@@ -1,0 +1,19 @@
+
+
+    <div class="css-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Example CSS Properties</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cssProperties">
+            <td>{{ item.category }}</td>
+            <td>{{ item.properties }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  

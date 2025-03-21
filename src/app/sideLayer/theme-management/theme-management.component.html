@@ -1,0 +1,65 @@
+<div class="side-widget mat-elevation-z2">
+  <div style="display: flex;
+      align-items: center;
+      gap: 1em;">
+    <span class="property">Add Theme Properties </span>
+    <i class="info-icon" (mouseenter)="showTooltip()" (mouseleave)="hideTooltip()"><svg xmlns="http://www.w3.org/2000/svg" style="pointer-events: all;" width="20" height="20" viewBox="0 0 24 24"><path fill="#1f96ff" d="M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"/></svg></i>
+  </div>
+    <span><p style="font-size: 12px;">Customize your theme properties</p></span>
+    <div *ngIf="isTooltipVisible">
+      <app-css-properties></app-css-properties>
+    </div>
+  
+    <form [formGroup]="themeForm" (ngSubmit)="addThemeProperty()" class="theme-form">
+    <div class="key">
+     <p style="margin: 0; font-size: 12px; font-weight: bold;">Property Name</p>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="keyName" placeholder="Enter Property name">
+      </mat-form-field>
+    </div>
+    <div class="type">
+      <p style="margin: 0; font-size: 12px; font-weight: bold;">Type</p>
+      <mat-form-field appearance="outline">
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let type of types" [value]="type">{{ type }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+      <button style="margin-bottom: 5px;" mat-raised-button color="primary" type="submit" [disabled]="themeForm.invalid">   Add</button>
+    </form>
+    <p *ngIf="themeForm.get('keyName')?.hasError('duplicateKey') && themeForm.get('keyName')?.touched" class="error">
+        Property name already exists!
+      </p>
+    <table *ngIf="dataSource.data.length > 0" mat-table [dataSource]="dataSource" class="">
+      <ng-container matColumnDef="keyName">
+        <th mat-header-cell *matHeaderCellDef> Property Name </th>
+        <td mat-cell *matCellDef="let element">{{ element.keyName }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="value">
+        <th mat-header-cell *matHeaderCellDef> Value </th>
+        <td mat-cell *matCellDef="let element">
+          <span *ngIf="element.type === 'Color'" [style.background]="element.value" class="color-box"></span>
+          <span>{{ element.value }}</span>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="action">
+        <th style="width: 35px;" mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <button mat-icon-button color="warn" (click)="removeProperty(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  

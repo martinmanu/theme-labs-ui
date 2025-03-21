@@ -1,0 +1,125 @@
+.side-widget {
+  position: fixed;
+  left: 0;
+  top: 11vh;
+  margin-left: 10px;
+  width: 33%;
+  border-radius: 7px;
+  height: 88vh;
+  padding: 20px 10px;
+  overflow-y: auto;
+}
+
+:host ::ng-deep .mat-form-field-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+::ng-deep .mat-cell {
+  padding-left: 8px;
+}
+
+:host ::ng-deep tr.mat-header-row {
+  height: 35px;
+  background: #f7f7f7;
+}
+
+:host ::ng-deep tbody td.mat-cell {
+  border-radius: 5px;
+  border: 2px solid #f7f7f7;
+  padding-left: 5px;
+  font-size: normal;
+}
+
+:host ::ng-deep .mat-form-field-flex {
+  height: 42px;
+}
+:host ::ng-deep .key .mat-form-field-flex {
+  width: 17em;
+}
+:host ::ng-deep .type .mat-form-field-flex {
+  width: 10em;
+}
+
+:host ::ng-deep th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
+  padding-right: 0;
+}
+
+.parent-container {
+  position: relative;
+  display: inline-block;
+}
+
+.info-icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.tooltip-container {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 100;
+  min-width: 300px;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  
+
+.property {
+  font-size: 23px;
+  font-weight: bold;
+  color: #1f96ff;
+}
+
+.error {
+  font-size: 12px;
+  color: red;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.theme-form {
+  display: flex;
+  gap: 7px;
+  padding: 10px 5px;
+  flex-wrap: wrap;
+  border-radius: 6px;
+  background: #f7f7f7;
+  align-items: end;
+}
+
+.mat-form-field {
+  flex: 1;
+  min-width: 120px;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.color-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
